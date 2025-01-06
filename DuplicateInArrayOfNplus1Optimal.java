@@ -7,6 +7,12 @@ public class DuplicateInArrayOfNplus1Optimal {
             slow = a[slow];
             fast = a[a[fast]];
         } while (slow != fast);
+        // 2. Find the number
+        slow = a[0];
+        while(slow != fast){
+            slow = a[slow];
+            fast = a[fast];
+        }
         System.out.println("Duplicate element: " + slow);
     }
 }
