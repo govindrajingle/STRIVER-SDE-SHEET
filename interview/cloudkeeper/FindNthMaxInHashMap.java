@@ -1,9 +1,6 @@
 package interview.cloudkeeper;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class FindNthMaxInHashMap {
     public static void main(String[] args) {
@@ -12,6 +9,7 @@ public class FindNthMaxInHashMap {
         map.put("Bob", 41);
         map.put("Charlie", 50);
         map.put("Denice", 40);
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
         //Find the second-largest marks
         int arr[] = new int[map.size()]; //Create an array to store the hashmap values
         Collection<Integer> values = map.values(); // map.values return the Collection and that can be iterated via the For each and Iterator
