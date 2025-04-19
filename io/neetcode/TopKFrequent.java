@@ -10,27 +10,25 @@ public class TopKFrequent {
             result[i] = ans.get(i);
         }
         for (int i = 0; i < result.length; i++) {
-            System.out.println(result[i]);
+            System.out.print(result[i]+" ");
         }
     }
 
     private static ArrayList<Integer> topKFrequent(int[] nums, int k) {
-        HashMap<Integer, Integer> map = new HashMap<>(); //(indexValue, Occurrences)
-        for(int i=0; i<nums.length; i++){
-            if(map.containsKey(nums[i])){
-                 map.put(nums[i], map.get(nums[i])+1);
-            } else {
-                map.put(nums[i], 1);
-            }
+        HashMap<Integer, Integer> map = new HashMap<>(); //indexValue and frequency
+        int  n = nums.length;
+        for(int i=0; i<n; i++){
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
         }
-        //System.out.println(map.toString());
-        ArrayList<Integer> temp = new ArrayList<>();
+        PriorityQueue<Map.Entry<Integer, Integer>> maxHeap = new PriorityQueue<>((a,b)->(b.getValue()-a.getValue()));
         for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            if(entry.getValue() >= k){
-                temp.add(entry.getKey());
-            }
+            maxHeap.add(entry);
         }
-        //System.out.println(temp);
+        ArrayList<Integer> temp = new ArrayList<>();
+        while(temp.size() < k){
+            Map.Entry<Integer, Integer> entry = maxHeap.poll();
+            temp.add(entry.getKey());
+        }
         return temp;
     }
 }
